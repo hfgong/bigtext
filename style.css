@@ -1,0 +1,351 @@
+/* Visual style shared with Mobile LaTeX / AirCopy / 农历 / 漢字 / Bark: slate palette, blue accent, soft cards. */
+:root {
+  --bg-color: #f8fafc;
+  --surface-color: #ffffff;
+  --surface-hover: #f1f5f9;
+  --surface-active: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --border-color: #e2e8f0;
+  --primary-color: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-light: #eff6ff;
+  --primary-text: #1d4ed8;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #090d16;
+    --surface-color: #131b2e;
+    --surface-hover: #1e293b;
+    --surface-active: #334155;
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --border-color: #1e293b;
+    --primary-color: #3b82f6;
+    --primary-hover: #60a5fa;
+    --primary-light: #1e293b;
+    --primary-text: #93c5fd;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body { overflow-x: hidden; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+               "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  min-height: 100dvh;
+}
+
+button, input, textarea { font: inherit; color: inherit; }
+[hidden] { display: none !important; }
+
+.app {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: max(8px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right))
+           max(8px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0 10px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.brand-logo {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  box-shadow: 0 2px 5px rgba(37, 99, 235, 0.3);
+}
+
+.btn-top {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 6px 10px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  min-height: 32px;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.15s ease;
+}
+.btn-top:active { transform: scale(0.95); background: var(--surface-active); }
+
+/* Cards */
+.card {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 14px;
+  margin-bottom: 10px;
+}
+
+.section-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin: 2px 0 8px;
+}
+.section-label ~ .section-label { margin-top: 14px; }
+
+textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 84px;
+  padding: 12px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.35;
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.btn-show {
+  width: 100%;
+  margin-top: 10px;
+  padding: 14px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--primary-color);
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+.btn-show:hover { background: var(--primary-hover); }
+.btn-show:active { transform: scale(0.98); }
+
+.hint {
+  margin-top: 8px;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+/* Color themes */
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(52px, 1fr));
+  gap: 8px;
+}
+.swatch {
+  height: 44px;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--border-color);
+  font-weight: 800;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+.swatch:active { transform: scale(0.94); }
+.swatch.active { border-color: var(--primary-color); box-shadow: 0 0 0 3px var(--primary-light); }
+
+/* Options */
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+}
+.seg {
+  display: inline-flex;
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 3px;
+}
+.seg button {
+  border: none;
+  background: transparent;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.seg button.active { background: var(--primary-light); color: var(--primary-text); }
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.toggle input { width: 18px; height: 18px; accent-color: var(--primary-color); }
+
+.speed-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+.speed-row input { flex: 1; accent-color: var(--primary-color); }
+
+/* Phrase chips */
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.88rem;
+  cursor: pointer;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: all 0.12s ease;
+}
+.chip:active { background: var(--primary-light); border-color: var(--primary-color); color: var(--primary-color); }
+
+footer {
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  padding: 6px 0 4px;
+}
+
+/* ===== Full-screen sign ===== */
+.stage {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  background: var(--sign-bg, #000);
+  color: var(--sign-fg, #fff);
+  overflow: hidden;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.sign {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3vmin;
+  transform-origin: 0 0;
+}
+/* Rotated 90°: lay the sign out in a landscape box on a portrait screen (and vice versa). */
+.stage.rotated .sign {
+  width: 100dvh;
+  height: 100vw;
+  transform: translateX(100vw) rotate(90deg);
+}
+.stage.mirrored #signText { transform: scaleX(-1); }
+
+#signText {
+  display: block;
+  max-width: 100%;
+  text-align: center;
+  line-height: 1.08;
+  white-space: pre-wrap;
+  overflow-wrap: normal;
+  word-break: keep-all;
+  line-break: strict;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+.stage.thin #signText { font-weight: 500; }
+/* CJK text has no spaces, so it must be allowed to break between characters. */
+.stage.cjk #signText { word-break: normal; }
+
+/* Scroll mode: one line moving right to left. */
+.stage.scroll .sign { justify-content: flex-start; padding: 0; }
+.stage.scroll #signText {
+  max-width: none;
+  white-space: pre;
+  will-change: transform;
+}
+
+.stage.blink { animation: blink 1.2s steps(1, end) infinite; }
+@keyframes blink {
+  0%, 60% { background: var(--sign-bg); color: var(--sign-fg); }
+  60.01%, 100% { background: var(--sign-fg); color: var(--sign-bg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .stage.blink { animation-duration: 2.4s; }
+}
+
+.stage-bar {
+  position: absolute;
+  right: max(12px, env(safe-area-inset-right));
+  top: max(12px, env(safe-area-inset-top));
+  display: flex;
+  gap: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+.stage.show-bar .stage-bar { opacity: 1; pointer-events: auto; }
+.stage-bar button {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(15, 23, 42, 0.72);
+  color: #fff;
+  font-size: 1.3rem;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: max(20px, env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  z-index: 20;
+  background: rgba(15, 23, 42, 0.9);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  pointer-events: none;
+}
