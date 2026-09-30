@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Big Text</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Show a message in huge letters on your phone: airport pickup signs, talking through glass, noisy places. Works offline.">
+  <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#090d16" media="(prefers-color-scheme: dark)">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <!-- Editor -->
+  <div class="app" id="editor">
+    <header>
+      <div class="brand">
+        <img class="brand-logo" src="icon.svg" alt="" width="26" height="26">
+        <span>Big Text</span>
+      </div>
+      <button type="button" class="btn-top" id="shareBtn">🔗 Copy link</button>
+    </header>
+
+    <section class="card">
+      <textarea id="textInput" rows="3" placeholder="Type a name or message…&#10;e.g. Welcome, Anna!" aria-label="Message" enterkeyhint="done"></textarea>
+      <button type="button" class="btn-show" id="showBtn">▶ Show big</button>
+      <div class="hint">Tip: turn up screen brightness. A new line starts a new line on the sign.</div>
+    </section>
+
+    <section class="card">
+      <div class="section-label">🎨 Colors</div>
+      <div class="swatches" id="themes" role="radiogroup" aria-label="Colors"></div>
+
+      <div class="section-label">✨ Style</div>
+      <div class="options">
+        <div class="seg" role="radiogroup" aria-label="Mode" id="modeSeg">
+          <button type="button" data-mode="fit" class="active">Fit screen</button>
+          <button type="button" data-mode="scroll">Scroll</button>
+        </div>
+        <label class="toggle"><input type="checkbox" id="blinkToggle"> Blink</label>
+        <label class="toggle"><input type="checkbox" id="mirrorToggle"> Mirror</label>
+        <label class="toggle"><input type="checkbox" id="boldToggle" checked> Bold</label>
+      </div>
+      <div class="speed-row" id="speedRow" hidden>
+        <span>Speed</span>
+        <input type="range" id="speed" min="1" max="10" value="4" aria-label="Scroll speed">
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-label">⚡ Quick phrases</div>
+      <div class="chips" id="phrases"></div>
+      <div class="section-label" id="recentLabel" hidden>🕘 Recent</div>
+      <div class="chips" id="recent"></div>
+    </section>
+
+    <footer>Works offline · Keeps the screen on while showing · Tap the sign for options</footer>
+  </div>
+
+  <!-- Full-screen sign -->
+  <div class="stage" id="stage" hidden>
+    <div class="sign" id="sign"><span id="signText"></span></div>
+    <div class="stage-bar" id="stageBar">
+      <button type="button" id="stageTheme" aria-label="Next colors">🎨</button>
+      <button type="button" id="stageRotate" aria-label="Rotate">⟳</button>
+      <button type="button" id="stageClose" aria-label="Close">✕</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" hidden></div>
+</body>
+</html>
